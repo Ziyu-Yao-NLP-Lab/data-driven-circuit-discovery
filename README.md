@@ -14,14 +14,16 @@ cluster of examples.
 This repository contains the code to reproduce the three experiment families
 in the paper:
 
-1. `experiments/general-task-circuits/` — shows that existing methods do not
-   yield a single task-general circuit (minor variation in the discovery
-   dataset produces low-overlap circuits with low cross-task faithfulness).
-2. `experiments/dataset-specific-circuits/` — shows that existing methods
-   instead return a high-faithfulness circuit for the discovery dataset
-   composed of multiple distinct tasks.
-3. `experiments/dcd/` — the proposed DCD method: per-example EAP-IG attribution
-   → clustering → per-cluster circuits → faithfulness evaluation.
+1. `experiments/general-task-circuits/` — **Section 4:** hypothesis-driven
+   methods do not discover general task circuits (minor variation in the
+   discovery dataset produces low-overlap circuits with low cross-task
+   faithfulness).
+2. `experiments/dataset-specific-circuits/` — **Section 5:** hypothesis-driven
+   methods can mix distinct mechanisms in a single circuit (a single circuit
+   discovered on a multi-task dataset achieves high faithfulness on the
+   discovery distribution but conflates the underlying mechanisms).
+3. `experiments/dcd/` — **the proposed DCD method**: per-example EAP-IG
+   attribution → clustering → per-cluster circuits → faithfulness evaluation.
 
 ## Installation
 
@@ -53,9 +55,9 @@ src/
 └── utils/                # model loading, graph utils, metrics, EAP patches
 
 experiments/
-├── dcd/                  # 01 → 05 DCD pipeline + curated analysis/ scripts
-├── dataset-specific-circuits/   # 01 → 03 baseline
-└── general-task-circuits/       # 01 → 03 baseline
+├── dcd/                          # 01 → 05 DCD pipeline + curated analysis/ scripts
+├── dataset-specific-circuits/    # Section 5: single circuits mix distinct mechanisms
+└── general-task-circuits/        # Section 4: methods don't find a general task circuit
 
 configs/{family}/{task}/{model}.yaml   # one config per experiment-task-model combination
 third_party/MIB-circuit-track/         # git submodule (EAP + MIB utilities)
@@ -98,20 +100,20 @@ python experiments/dcd/05_evaluate_faithfulness.py --config configs/dcd/ioi/gpt2
 Swap the config to reproduce other (task, model) combinations:
 `configs/dcd/{arithmetic,entity-binding,ioi,sequence-completion,all-tasks}/<model>.yaml`.
 
-### Baseline: dataset-specific circuits
-
-```bash
-python experiments/dataset-specific-circuits/01_create_data.py           --config configs/dataset-specific-circuits/gpt2.yaml
-python experiments/dataset-specific-circuits/02_run_circuit_discovery.py --config configs/dataset-specific-circuits/gpt2.yaml
-python experiments/dataset-specific-circuits/03_evaluate.py              --config configs/dataset-specific-circuits/gpt2.yaml
-```
-
-### Baseline: general-task circuits
+### Section 4 — Hypothesis-driven methods do not discover general task circuits
 
 ```bash
 python experiments/general-task-circuits/01_create_data.py           --config configs/general-task-circuits/ioi/gpt2.yaml
 python experiments/general-task-circuits/02_run_circuit_discovery.py --config configs/general-task-circuits/ioi/gpt2.yaml
 python experiments/general-task-circuits/03_evaluate.py              --config configs/general-task-circuits/ioi/gpt2.yaml
+```
+
+### Section 5 — Hypothesis-driven methods can mix distinct mechanisms in a single circuit
+
+```bash
+python experiments/dataset-specific-circuits/01_create_data.py           --config configs/dataset-specific-circuits/gpt2.yaml
+python experiments/dataset-specific-circuits/02_run_circuit_discovery.py --config configs/dataset-specific-circuits/gpt2.yaml
+python experiments/dataset-specific-circuits/03_evaluate.py              --config configs/dataset-specific-circuits/gpt2.yaml
 ```
 
 ### Paper figures
