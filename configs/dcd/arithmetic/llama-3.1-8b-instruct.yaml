@@ -1,0 +1,29 @@
+model:
+  name: "meta-llama/Llama-3.1-8B-Instruct"
+  cache_dir: "models"
+
+data:
+  task_name: "arithmetic"
+  tasks:
+    arithmetic:
+      prompt_types: ["2-operand-addition", "3-operand-addition", "2-operand-addition-verbal-v1", "2-operand-addition-verbal-v2", "2-operand-addition-verbal-v3"]
+  n_data: 1000 # equal distribution of data for each prompt type. This is the total number of data for each prompt type, not 1000 for each prompt type.
+  train_ratio: 0.6
+  val_ratio: 0.2
+  test_ratio: 0.2
+  only_correct: false
+
+paths:
+  output_dir: "data/dcd/arithmetic/llama-3.1-8b-instruct"
+
+attribution:
+  method: "EAP-IG-inputs"
+  ablation: "patching"
+  ig_steps: 5
+  batch_size: 1
+  level: "edge"
+  max_examples: null
+
+circuit_creation:
+  baseline_methods: ["EAP"]
+  random_seed: 42

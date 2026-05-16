@@ -1,0 +1,14 @@
+clustering:
+  max_clusters: 20
+
+  # preprocessing: one of "raw", "binary", "sparse". Defaults to "raw" if
+  # omitted. CLI flags --binarize / --sparsify in 03_run_clustering.py
+  # override this field for every method at once.
+  methods:
+    - name: "kmeans-pca"
+      reduction: "pca"
+      n_components: [10]
+
+    - name: "kmeans-svd"
+      reduction: "truncated_svd"
+      n_components: [10]

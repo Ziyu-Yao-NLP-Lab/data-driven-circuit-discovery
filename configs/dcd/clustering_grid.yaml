@@ -1,0 +1,26 @@
+clustering:
+  max_clusters: 20
+
+  # preprocessing: one of "raw", "binary", "sparse". Defaults to "raw" if
+  # omitted. CLI flags --binarize / --sparsify in 03_run_clustering.py
+  # override this field for every method at once.
+  methods:
+    - name: "hierarchical-agglomerative-svd"
+      reduction: "truncated_svd"
+      n_components: [20]
+      distance_metric: "euclidean"
+      linkage: ["average"]
+
+    - name: "hierarchical-divisive-svd"
+      reduction: "truncated_svd"
+      n_components: [20]
+      distance_metric: "euclidean"
+      linkage: ["average"]
+
+    - name: "kmeans-pca"
+      reduction: "pca"
+      n_components: [20]
+
+    - name: "kmeans-svd"
+      reduction: "truncated_svd"
+      n_components: [20]

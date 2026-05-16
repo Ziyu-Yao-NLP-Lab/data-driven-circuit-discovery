@@ -1,0 +1,63 @@
+model:
+  name: "Qwen/Qwen2.5-7B-Instruct"
+  cache_dir: "models"
+
+data:
+  task_name: "entity-binding"
+  aspects:
+    complexity: [2-comma, 3-comma, 4-comma, 5-comma, 6-comma, 7-comma, 8-comma]
+    syntax: [comma-0-position, comma-1-position, comma-2-position, comma-3-position, comma-4-position, comma-5-position, comma-6-position, comma-7-position, 2-comma, 2-period]
+    domain: [2-comma, 2-color-box-comma]
+    all: [2-comma, 3-comma, 4-comma, 5-comma, 6-comma, 7-comma, 8-comma, 2-period, 2-color-box-comma, comma-0-position, comma-1-position, comma-2-position, comma-3-position, comma-4-position, comma-5-position, comma-6-position, comma-7-position]
+  variants:
+    - prompt_type: "2-comma"
+      n_data: 1000
+    - prompt_type: "3-comma"
+      n_data: 1000
+    - prompt_type: "4-comma"
+      n_data: 1000
+    - prompt_type: "5-comma"
+      n_data: 1000
+    - prompt_type: "6-comma"
+      n_data: 1000
+    - prompt_type: "7-comma"
+      n_data: 1000
+    - prompt_type: "8-comma"
+      n_data: 1000
+    - prompt_type: "2-period"
+      n_data: 1000
+    - prompt_type: "2-color-box-comma"
+      n_data: 1000
+    - prompt_type: "comma-0-position"
+      n_data: 1000
+    - prompt_type: "comma-1-position"
+      n_data: 1000
+    - prompt_type: "comma-2-position"
+      n_data: 1000
+    - prompt_type: "comma-3-position"
+      n_data: 1000
+    - prompt_type: "comma-4-position"
+      n_data: 1000
+    - prompt_type: "comma-5-position"
+      n_data: 1000
+    - prompt_type: "comma-6-position"
+      n_data: 1000
+    - prompt_type: "comma-7-position"
+      n_data: 1000
+  only_correct: false
+  train_ratio: 0.6
+  val_ratio: 0.2
+  test_ratio: 0.2
+
+attribution:
+  methods:
+    - name: "EAP-IG-inputs"
+      ig_steps: 5
+    - name: "EAP"
+      ig_steps: 1
+  ablation: "patching"
+  batch_size: 1
+  level: "edge"
+
+paths:
+  output_dir: "data/general-task-circuits/entity-binding/qwen2.5-7b-instruct"

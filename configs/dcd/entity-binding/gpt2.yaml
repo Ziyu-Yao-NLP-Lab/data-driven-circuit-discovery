@@ -1,0 +1,31 @@
+model:
+  name: "gpt2"
+  cache_dir: "models"
+
+data:
+  task_name: "entity-binding"
+  tasks:
+    entity-binding:
+      prompt_types: ["2-comma", "3-comma", "5-comma", "comma-0-position", "comma-4-position", "comma-7-position", "2-period", "8-period", "2-color-box-comma", "8-color-box-comma"]
+  n_data: 1000 # equal distribution of data for each prompt type
+  train_ratio: 0.6 # equal distribution of data for each prompt type
+  val_ratio: 0.2
+  test_ratio: 0.2
+  only_correct: false
+
+paths:
+  output_dir: "data/dcd/entity-binding/gpt2"
+
+attribution:
+  method: "EAP-IG-inputs"
+  ablation: "patching"
+  ig_steps: 5
+  batch_size: 1
+  level: "edge"
+  max_examples: null  # set to an int to cap examples (useful for testing)
+
+circuit_creation:
+  baseline_methods: ["EAP", "exact"]
+  eact_max_examples: 100
+  eact_batch_size: 100
+  random_seed: 42

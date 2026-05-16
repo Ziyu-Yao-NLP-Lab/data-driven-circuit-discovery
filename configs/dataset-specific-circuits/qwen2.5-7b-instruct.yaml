@@ -1,0 +1,30 @@
+model:
+  name: "Qwen/Qwen2.5-7B-Instruct"
+  cache_dir: "models"
+
+data:
+  task_name: "entity-binding+arithmetic"
+  tasks:
+    entity-binding:
+      prompt_types: ["2-comma"]
+    arithmetic:
+      prompt_types: ["2-operand-addition"]
+  n_data: 1000
+  mixing_ratios: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+  train_ratio: 0.6
+  val_ratio: 0.2
+  test_ratio: 0.2
+  only_correct: false
+
+attribution:
+  methods:
+    - name: "EAP-IG-inputs"
+      ig_steps: 5
+    - name: "EAP"
+      ig_steps: 1
+  ablation: "patching"
+  batch_size: 5
+  level: "edge"
+
+paths:
+  output_dir: "data/dataset-specific-circuits"

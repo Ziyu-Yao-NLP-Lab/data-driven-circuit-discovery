@@ -1,0 +1,32 @@
+model:
+  name: "Qwen/Qwen2.5-7B"
+  cache_dir: "models"
+
+data:
+  task_name: "sequence-completion"
+  aspects:
+    complexity: [2-gram-symbolic, 3-gram-symbolic, 4-gram-symbolic]
+  variants:
+    - prompt_type: "2-gram-symbolic"
+      n_data: 1000
+    - prompt_type: "3-gram-symbolic"
+      n_data: 1000
+    - prompt_type: "4-gram-symbolic"
+      n_data: 1000
+  only_correct: false
+  train_ratio: 0.6
+  val_ratio: 0.2
+  test_ratio: 0.2
+
+attribution:
+  methods:
+    - name: "EAP-IG-inputs"
+      ig_steps: 5
+    - name: "EAP"
+      ig_steps: 1
+  ablation: "patching"
+  batch_size: 1
+  level: "edge"
+
+paths:
+  output_dir: "data/general-task-circuits/sequence-completion/qwen2.5-7b"

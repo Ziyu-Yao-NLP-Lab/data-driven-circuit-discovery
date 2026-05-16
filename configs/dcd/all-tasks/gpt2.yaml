@@ -1,0 +1,36 @@
+model:
+  name: "gpt2"
+  cache_dir: "models"
+
+data:
+  task_name: "all-tasks"
+  tasks:
+    ioi:
+      prompt_types: ["mixed", "letter", "3-person"]
+    sequence-completion:
+      prompt_types: ["2-gram-symbolic", "3-gram-symbolic", "4-gram-symbolic"]
+  n_data: 1000
+  train_ratio: 0.6
+  val_ratio: 0.2
+  test_ratio: 0.2
+  only_correct: false
+
+paths:
+  output_dir: "data/dcd/all-tasks/gpt2"
+
+attribution:
+  method: "EAP-IG-inputs"
+  ablation: "patching"
+  ig_steps: 5
+  batch_size: 1
+  level: "edge"
+  max_examples: null
+
+circuit_creation:
+  baseline_methods: ["EAP", "exact"]
+  eact_batch_size: 100
+  random_seed: 42
+
+
+evaluation:
+  test_data: "data/dcd/all-tasks/gpt2/test.csv"

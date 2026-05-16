@@ -1,0 +1,39 @@
+model:
+  name: "meta-llama/Llama-3.1-8B-Instruct"
+  cache_dir: "models"
+
+data:
+  task_name: "arithmetic"
+  aspects:
+    complexity: [2-operand-addition, 3-operand-addition]
+    domain: [2-operand-addition, 2-operand-addition-verbal-v1]
+    syntax: [2-operand-addition-verbal-v1, 2-operand-addition-verbal-v2, 2-operand-addition-verbal-v3]
+    all: [2-operand-addition, 3-operand-addition, 2-operand-addition-verbal-v1, 2-operand-addition-verbal-v2, 2-operand-addition-verbal-v3]
+  variants:
+    - prompt_type: "2-operand-addition"
+      n_data: 1000
+    - prompt_type: "3-operand-addition"
+      n_data: 1000
+    - prompt_type: "2-operand-addition-verbal-v1"
+      n_data: 1000
+    - prompt_type: "2-operand-addition-verbal-v2"
+      n_data: 1000
+    - prompt_type: "2-operand-addition-verbal-v3"
+      n_data: 1000
+  only_correct: false
+  train_ratio: 0.6
+  val_ratio: 0.2
+  test_ratio: 0.2
+
+attribution:
+  methods:
+    - name: "EAP-IG-inputs"
+      ig_steps: 5
+    - name: "EAP"
+      ig_steps: 1
+  ablation: "patching"
+  batch_size: 5
+  level: "edge"
+
+paths:
+  output_dir: "data/general-task-circuits/arithmetic/llama-3.1-8b-instruct"

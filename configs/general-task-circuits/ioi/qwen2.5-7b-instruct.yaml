@@ -1,0 +1,43 @@
+model:
+  name: "Qwen/Qwen2.5-7B-Instruct"
+  cache_dir: "models"
+
+data:
+  task_name: "ioi"
+  aspects:
+    complexity: [mixed, 3-person, filler]
+    domain: [mixed, letter]
+    syntax: [ABBA, BABA, mixed, passive]
+    all: [ABBA, BABA, mixed, 3-person, passive, letter, filler]
+  variants:
+    - prompt_type: "ABBA"
+      n_data: 1000
+    - prompt_type: "BABA"
+      n_data: 1000
+    - prompt_type: "mixed"
+      n_data: 1000
+    - prompt_type: "3-person"
+      n_data: 1000
+    - prompt_type: "passive"
+      n_data: 1000
+    - prompt_type: "letter"
+      n_data: 1000
+    - prompt_type: "filler"
+      n_data: 1000
+  only_correct: false
+  train_ratio: 0.6
+  val_ratio: 0.2
+  test_ratio: 0.2
+
+attribution:
+  methods:
+    - name: "EAP-IG-inputs"
+      ig_steps: 5
+    - name: "EAP"
+      ig_steps: 1
+  ablation: "patching"
+  batch_size: 1
+  level: "edge"
+
+paths:
+  output_dir: "data/general-task-circuits/ioi/qwen2.5-7b-instruct"
