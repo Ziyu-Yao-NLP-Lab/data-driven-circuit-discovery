@@ -59,7 +59,6 @@ experiments/
 
 configs/{family}/{task}/{model}.yaml   # one config per experiment-task-model combination
 third_party/MIB-circuit-track/         # git submodule (EAP + MIB utilities)
-tests/                                 # smoke tests (pytest)
 ```
 
 All scripts assume they are launched from the repo root. Paths inside
@@ -121,13 +120,6 @@ After completing the DCD pipeline, the curated scripts under
 `experiments/dcd/analysis/` reproduce cluster-purity and faithfulness-curve
 figures from the paper. Each script reads from `results/` and writes
 plots back next to the source data.
-
-## Tests
-
-```bash
-pytest tests/                  # all tests, including ones that download GPT-2 weights
-pytest tests/ -m "not slow"    # fast unit tests only (no weights required)
-```
 
 ## Citation
 

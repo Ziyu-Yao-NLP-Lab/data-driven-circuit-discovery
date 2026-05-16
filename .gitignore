@@ -21,6 +21,9 @@ slurm-*.out
 TODO.md
 .claude/
 
+# Local-only test suite (not shipped publicly)
+/tests/
+
 # --- Standard Python ignores ---
 
 # Byte-compiled / optimized / DLL files

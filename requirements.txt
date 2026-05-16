@@ -12,4 +12,3 @@ jaxtyping>=0.2.20
 tqdm>=4.65
 matplotlib>=3.7
 pyyaml>=6.0
-pytest>=7.0
