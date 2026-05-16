@@ -74,7 +74,6 @@ The pipeline is model-agnostic; we report results for:
 | Short name                | HuggingFace ID                          |
 |---------------------------|-----------------------------------------|
 | `gpt2`                    | `gpt2`                                  |
-| `qwen2.5-7b`              | `Qwen/Qwen2.5-7B`                       |
 | `qwen2.5-7b-instruct`     | `Qwen/Qwen2.5-7B-Instruct`              |
 | `llama-3.1-8b-instruct`   | `meta-llama/Llama-3.1-8B-Instruct`      |
 
