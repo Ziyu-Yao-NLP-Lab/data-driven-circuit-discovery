@@ -92,6 +92,8 @@ python experiments/dcd/03_run_clustering.py  --config configs/dcd/ioi/gpt2.yaml 
                                              --clustering-config configs/dcd/clustering_grid.yaml --stage preprocess
 python experiments/dcd/03_run_clustering.py  --config configs/dcd/ioi/gpt2.yaml \
                                              --clustering-config configs/dcd/clustering_grid.yaml --stage cluster
+python experiments/dcd/03_run_clustering.py  --config configs/dcd/ioi/gpt2.yaml \
+                                             --clustering-config configs/dcd/clustering_grid.yaml --stage select
 python experiments/dcd/04_create_circuits.py    --config configs/dcd/ioi/gpt2.yaml
 python experiments/dcd/05_evaluate_faithfulness.py --config configs/dcd/ioi/gpt2.yaml
 ```
