@@ -28,7 +28,7 @@ in the paper:
 ## Installation
 
 ```bash
-git clone --recurse-submodules <this-repo-url>
+git clone --recurse-submodules https://github.com/Ziyu-Yao-NLP-Lab/data-driven-circuit-discovery
 cd data-driven-circuit-discovery
 
 python -m venv .venv && source .venv/bin/activate     # or conda
